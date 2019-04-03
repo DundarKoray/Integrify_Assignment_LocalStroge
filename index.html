@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,300,300i,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Assignment - Local Storage
+    </title>
+</head>
+<body>
+    <h1>Account Balance App</h1>   
+    <div class="wrapper">
+        <div class="section-input">
+            <input type="text" name="" id="item-description" placeholder="Some expence etc Milk">
+            <input type="text" name="" id="item-cost" placeholder="Enter cost 1€">
+            <select name="select" id="selection">
+                <option selected value="select">--Select--</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <button class="add">Add</button>
+        </div>
+
+        <div class="section-transaction">
+            <div class="incomes-box">
+                <h3>Incomes</h3>
+                <hr>
+            </div>
+            <div class="expenses-box">
+                <h3>Expense</h3>
+                <hr>
+            </div>
+        </div>
+
+        <div class="section-balance">
+            <h3>Balance</h3>
+            <p>money</p>
+        </div>
+
+    </div>
+    <script src="./script.js"></script> 
+</body>
+</html>
