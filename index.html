@@ -13,30 +13,32 @@
     <h1>Account Balance App</h1>   
     <div class="wrapper">
         <div class="section-input">
-            <input type="text" name="" id="item-description" placeholder="Some expence etc Milk">
+            <input type="text" name="" id="item-description" placeholder="Item description">
             <input type="text" name="" id="item-cost" placeholder="Enter cost 1€">
             <select name="select" id="selection">
                 <option selected value="select">--Select--</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
-            <button class="add">Add</button>
+            <button class="add-button">Add</button>
         </div>
 
         <div class="section-transaction">
             <div class="incomes-box">
                 <h3>Incomes</h3>
                 <hr>
+                <div class="income-data"></div>
             </div>
             <div class="expenses-box">
                 <h3>Expense</h3>
                 <hr>
+                <div class="expense-data"></div>
             </div>
         </div>
 
         <div class="section-balance">
             <h3>Balance</h3>
-            <p>money</p>
+            <p class="balance-result">money</p>
         </div>
 
     </div>
