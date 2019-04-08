@@ -64,3 +64,15 @@ button {
     border: 1px solid black;
     
 }
+
+.incomes {
+    /* text-align: right; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.incomes p {
+    font-size: 120%;
+    margin-bottom: 5px;
+}

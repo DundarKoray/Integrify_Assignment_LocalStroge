@@ -81,18 +81,51 @@ const accountBalance = {
         let balance = this.totalIncome() - this.totalExpense();
         return balance;
     },
-    
+    getIncomeData: function () {
+        let data = JSON.parse(localStorage.getItem('incomes'));
+        console.log(data);
+        incomeData.innerHTML = ''
+        let result;
+        if(data === null){
+            result = accountBalance.incomes.forEach(data =>{
+            incomeData.innerHTML += `<div class="incomes"><p>${data.description}</p><br>
+            <p>${data.amount}</p><br><p>${data.time}</p><br></div>`;
+            })
+        }else{
+         result = data.forEach(data =>{
+            incomeData.innerHTML += `<div class="incomes"><p>${data.description}</p><br>
+            <p>${data.amount}</p><br><p>${data.time}</p><br></div>`;
+        })
+    }
+        return result;
+
+    },
+    getExpenseData: function () {
+        let data = JSON.parse(localStorage.getItem('expenses'));
+        console.log(data);
+        expenseData.innerHTML = ''
+        let result = data.forEach(data =>{
+            expenseData.innerHTML += `<div class="incomes"><p>${data.description}</p><br>
+            <p>${data.amount}</p><br><p>${data.time}</p><br></div>`;
+        })
+        return result;
+
+    }
+
+
 }
 
 
 
-localStorage.setItem('incomes', JSON.stringify(accountBalance.incomes, undefined, 2));
-localStorage.setItem('expenses', JSON.stringify(accountBalance.expenses, undefined, 2));
+// localStorage.setItem('incomes', JSON.stringify(accountBalance.incomes, undefined, 2));
+// localStorage.setItem('expenses', JSON.stringify(accountBalance.expenses, undefined, 2));
 
 
 console.log(accountBalance.totalIncome());
 console.log(accountBalance.totalExpense());
 
+
+//EVENT LISTENER
 addButton.addEventListener('click', function () {
     let selectedValue = select.options[select.selectedIndex].value;
     console.log(selectedValue)
@@ -106,24 +139,29 @@ addButton.addEventListener('click', function () {
         
     } else if (selectedValue === 'expense') {
         accountBalance.addExpense(itemDescription.value,parseInt(itemCost.value))
-        expenseData.innerHTML += `<div><span>${localStorage.getItem('expenses')}</span></div>`;
+        
     } else {
         console.log('Please select an option');
     }
+
+    accountBalance.calculateBalance();
+    accountBalance.getIncomeData();
+    accountBalance.getExpenseData();
     
 })
 
-
-function  showContent () {
+accountBalance.getIncomeData()
+accountBalance.getExpenseData()
+// function  showContent () {
     
-    let output =  JSON.parse(localStorage.getItem('incomes')).forEach(element =>{
+//     let output =  JSON.parse(localStorage.getItem('incomes')).forEach(element =>{
         
-        incomeData.innerHTML += `<div><span>${element.amount}</span></div>`;
-    })
-    console.log(output);
-    return output;
-}
-showContent();
+//         incomeData.innerHTML += `<div><span>${element.amount}</span></div>`;
+//     })
+//     console.log(output);
+//     return output;
+// }
+// showContent();
 
 
 // function setToLocal(){
@@ -229,7 +267,7 @@ function displayDateTime(){
 
 
 
-
+// localStorage.clear()
 
 
 
