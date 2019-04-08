@@ -99,15 +99,6 @@ const accountBalance = {
 }
 
 
-
-// localStorage.setItem('incomes', JSON.stringify(accountBalance.incomes, undefined, 2));
-// localStorage.setItem('expenses', JSON.stringify(accountBalance.expenses, undefined, 2));
-
-
-// console.log(accountBalance.totalIncome());
-// console.log(accountBalance.totalExpense());
-
-
 //EVENT LISTENER
 addButton.addEventListener('click', function () {
     let selectedValue = select.options[select.selectedIndex].value;
