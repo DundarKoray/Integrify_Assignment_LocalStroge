@@ -5,7 +5,7 @@ const select = document.querySelector('#selection')
 const option = document.querySelectorAll('option')
 const incomeData = document.querySelector('.income-data')
 const expenseData = document.querySelector('.expense-data')
-
+const balanceResult = document.querySelector('.balance-result')
 
 const accountBalance = {
     name: 'Koray',
@@ -36,34 +36,28 @@ const accountBalance = {
     addIncome: function (description, amount) {
         //load local storage
         let time = displayDateTime();
-       
         this.incomes.push({description, amount, time});
-        
         
         let json = localStorage.getItem('incomes')
         const retreivedFromLocal = JSON.parse(json);
         retreivedFromLocal.push({description, amount, time});
         localStorage.setItem('incomes', JSON.stringify(retreivedFromLocal), undefined, 4);
-        
-        console.log(retreivedFromLocal);
-        
+                
     },
     addExpense: function (description, amount) {
         let time = displayDateTime();
         this.expenses.push({description, amount, time});
         
-        
         let json = localStorage.getItem('expenses')
         const retreivedFromLocal = JSON.parse(json);
         retreivedFromLocal.push({description, amount, time});
         localStorage.setItem('expenses', JSON.stringify(retreivedFromLocal), undefined, 4);
-        
-        console.log(retreivedFromLocal);
-        
     },
     totalIncome: function () {
         let sum = 0;
-        this.incomes.forEach(element => {
+        let dataIncome = JSON.parse(localStorage.getItem('incomes'))
+
+        dataIncome.forEach(element => {
             sum = sum + element.amount;
             
         });
@@ -71,7 +65,8 @@ const accountBalance = {
     },
     totalExpense: function () {
         let sum = 0;
-        this.expenses.forEach(element => {
+        let dataExpense = JSON.parse(localStorage.getItem('expenses'))
+        dataExpense.forEach(element => {
             sum = sum + element.amount; 
             
         });
@@ -79,11 +74,11 @@ const accountBalance = {
     },
     calculateBalance: function () {
         let balance = this.totalIncome() - this.totalExpense();
-        return balance;
+        return balanceResult.innerHTML= `Your current balance is: ${balance}`
     },
     getIncomeData: function () {
         let dataIncome = JSON.parse(localStorage.getItem('incomes'));
-        incomeData.innerHTML = ''
+        incomeData.innerHTML = '';
         let result = dataIncome.forEach(data=> {
             incomeData.innerHTML += `<div class="incomes"><p>${data.description}</p><br>
             <p>${data.amount}</p><br><p>${data.time}</p><br></div>`;
@@ -92,7 +87,7 @@ const accountBalance = {
     },
     getExpenseData: function () {
         let dataExpense = JSON.parse(localStorage.getItem('expenses'));
-        expenseData.innerHTML = ''
+        expenseData.innerHTML = '';
         let result = dataExpense.forEach(data => {
             expenseData.innerHTML += `<div class="incomes"><p>${data.description}</p><br>
             <p>${data.amount}</p><br><p>${data.time}</p><br></div>`;
@@ -132,9 +127,9 @@ addButton.addEventListener('click', function () {
         console.log('Please select an option');
     }
 
-    accountBalance.calculateBalance();
     accountBalance.getIncomeData();
     accountBalance.getExpenseData();
+    accountBalance.calculateBalance();
     clearFields()
     
 })
@@ -157,7 +152,7 @@ function displayDateTime(){
         mm = "0" + mm;
     }
 
-    var setDate = `The date is ${dd}/${mm}/${yyyy} ${hrs}:${min} `;
+    var setDate = `${dd}/${mm}/${yyyy} ${hrs}:${min} `;
     
     return setDate;
 }
@@ -169,12 +164,13 @@ if(localStorage.length === 0 || localStorage.length == null ) {
 } else {
     accountBalance.getIncomeData()
     accountBalance.getExpenseData()
+    accountBalance.calculateBalance()
 }
 
 function clearFields () {
     itemDescription.value= '';
-    itemAmount.value= '';
-    select.value= '';
+    itemCost.value= '';
+    select.value= 'select';
 }
 
 
