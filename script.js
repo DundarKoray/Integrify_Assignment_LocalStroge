@@ -135,6 +135,7 @@ addButton.addEventListener('click', function () {
     accountBalance.calculateBalance();
     accountBalance.getIncomeData();
     accountBalance.getExpenseData();
+    clearFields()
     
 })
 
@@ -170,8 +171,11 @@ if(localStorage.length === 0 || localStorage.length == null ) {
     accountBalance.getExpenseData()
 }
 
-
-
+function clearFields () {
+    itemDescription.value= '';
+    itemAmount.value= '';
+    select.value= '';
+}
 
 
 // localStorage.clear()
